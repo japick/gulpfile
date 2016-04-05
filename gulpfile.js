@@ -1,5 +1,6 @@
 var gulp        = require('gulp'),
 	postcss 	    = require('gulp-postcss'),
+	//cssnext 	    = require('postcss-cssnext'),
 	uglify       = require('gulp-uglify'),
 	plumber      = require('gulp-plumber'),
 	rename       = require('gulp-rename'),
@@ -43,21 +44,21 @@ gulp.task('styles', function() {
 		.pipe(postcss(processors))
 		.pipe(gulp.dest('assets/css'))
 		.pipe(notify({ message: 'Styles task complete' }))
-		.pipe(browserSync.stream({match: '**/*.css'}));
+		//.pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 // BrowserSync Styles Task
-gulp.task('styles-watch', ['styles'], browserSync.reload);
+//gulp.task('styles-watch', ['styles'], browserSync.reload);
 
 // Watch Task
 gulp.task('watch', function() {
-	browserSync({
+	/*browserSync({
 		server: {
 			baseDir: './'
 		}
-	});
+	});*/
 	gulp.watch(watch_paths.scripts, ['scripts']);
-	gulp.watch(watch_paths.styles, ['styles-watch']);
+	gulp.watch(watch_paths.styles, ['styles']);
 });
 
 gulp.task('default', ['watch']);
